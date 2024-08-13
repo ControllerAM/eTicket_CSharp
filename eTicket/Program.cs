@@ -10,7 +10,17 @@ builder.Services.AddDbContext<AppDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"))
     );
 
+
+
+
 var app = builder.Build();
+
+
+
+// Seed the database
+AppDbInitializer.Seed(app);
+
+app.Run();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
